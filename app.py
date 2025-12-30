@@ -100,7 +100,7 @@ async def update_product(product_id:int, update_info:product_pydanticin):
     product.quantity_in_stock =updated_info['quantity_in_stock']
     product.quantity_sold =updated_info['quantity_info']
     product.unit_price =updated_info['unit_price']
-    product.revenue += updated_info['quantity_sold'] * update_info['unit_price']
+    product.revenue +=( updated_info['quantity_sold'] * updated_info['unit_price']) + updated_info['revenue']
     await product.save()
     #serialise data
     response =await product_pydantic.from_tortoise_orm(product)
